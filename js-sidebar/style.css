@@ -1,0 +1,162 @@
+:root {
+    --bg-secondary: rgb(32, 32, 32);
+    --bg-primary: rgb(53, 52, 52);
+    --text-primary: rgb(190, 190, 190);
+    --text-hover-primary: rgb(255, 255, 255);
+    --text-active-primary: rgb(212, 255, 253);
+    --text-heading: rgb(103, 204, 230);
+    --bg-hover: rgb(114, 213, 224);
+    --red-primary: rgba(206, 0, 0, 0.939);
+    --red-bright: red;
+    --transition: all 0.3s ease-in;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* height: 200vh; */
+}
+
+.sidebar-toggle {
+    background: transparent;
+    border: none;
+    transition: var(--transition);
+    cursor: pointer;
+    padding: 0;
+    position: fixed;
+    right: 0.5rem;
+    top: 0.3rem;
+}
+
+.sidebar-toggle .material-symbols-outlined:hover,
+.sidebar-toggle .material-symbols-outlined:active {
+    color: var(--text-primary);
+}
+
+.sidebar-toggle .material-symbols-outlined {
+    color: var(--text-heading);
+    font-size: 2.5rem;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-secondary);
+    height: 100%;
+    width: 50vw;
+    transition: var(--transition);
+    
+    transform: translate(-100%);
+    /* this will hide the sidebar */
+    /* it is hidden by default */
+}
+
+/* this class is to show the sidebar */
+.show-sidebar {
+    transform: translate(0);
+}
+
+
+.sidebar-header {
+    display: flex; 
+    justify-content: space-between;
+    margin: 1rem 1rem;
+}
+
+.sidebar-header p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    text-shadow: 0 0 0.3rem white;    
+}
+
+.sidebar-header p span {
+    color: var(--text-heading);
+    font-size: 1.5rem;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    transition: var(--transition);
+    cursor: pointer;
+    padding: 0;
+}
+
+.close-btn .material-symbols-outlined {
+    color: var(--red-primary);
+    font-size: 1.5rem;
+    text-shadow: 0 0 5px red;
+    font-weight: 900;
+}
+
+.close-btn .material-symbols-outlined:hover,
+.close-btn .material-symbols-outlined:active {
+    color: var(--red-bright);
+}
+
+/* links start here */
+
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    /* background-color: white; */
+    margin-top: 1rem;
+}
+
+.sidebar-links a {
+    padding-left: 1rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+
+.sidebar-links a:hover,
+.sidebar-links a:active {
+    background-color: var(--bg-hover);
+    color: var(--bg-secondary);
+    padding-left: 1.5rem;
+}
+
+/* logos start here */
+.sidebar-logos {
+    position: fixed;
+    bottom: 1.5rem;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+}
+
+/* media queries */
+@media screen and (min-width: 1200px) {
+    * {
+        font-size: 20px;
+    }
+
+    .sidebar,
+    .sidebar-logos {
+        width: 20vw;
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+    * {
+        font-size: 18px;
+    }
+
+    .sidebar,
+    .sidebar-logos {
+        width: 35vw;
+    }
+}

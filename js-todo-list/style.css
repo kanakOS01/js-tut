@@ -1,0 +1,29 @@
+/* .custom-nav-container {
+    padding: 0 10rem;
+    
+} */
+
+.container {
+    max-width: 70rem;
+}
+
+.table-top-border th {
+    border-top: 1px solid var(--bs-border-color);
+}
+
+.task-no {
+    width: 3.8rem;
+}
+
+.task-title {
+    width: 13rem;
+}
+
+.task-actions{
+    width: 3.8rem;
+}
+
+.btn-delete{
+    width: 3.8rem;
+    font-size: 0.8rem;
+}

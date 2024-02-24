@@ -1,0 +1,132 @@
+:root {
+    --bg-nav: rgb(43, 39, 39);
+    --bg-primary: rgb(46, 44, 44);
+    --text-primary: rgb(190, 190, 190);
+    --text-hover-primary: rgb(255, 255, 255);
+    --text-active-primary: rgb(212, 255, 253);
+    --text-heading: rgb(109, 175, 166);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: grey;
+}
+
+/* nav starts here */
+
+.navbar {
+    background-color: var(--bg-nav);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    box-shadow: 0px 7px 26px var(--bg-nav);
+}
+
+.navbar h2 {
+    color: var(--text-heading);
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+}
+
+.navbar li a {
+    font-size: large;
+    list-style: none;
+    text-decoration: none;
+    color: var(--text-primary);
+    padding: 0 10px;
+}
+
+.navbar li a:hover {
+    color: var(--text-hover-primary);
+}
+
+.navbar li a:active {
+    color: var(--text-active-primary);
+}
+
+.tooltip {
+    position: relative;
+    /* Create a positioning context for the tooltip */
+}
+
+.tooltip::before {
+    content: attr(data-tooltip);
+    width: 10rem;
+    /* Use the content of the data-tooltip attribute */
+    position: absolute;
+    margin-top: 0.7rem;
+    top: 100%;
+    /* Position above the element */
+    left: 50%;
+    /* Center the tooltip horizontally */
+    transform: translateX(-50%);
+    /* Adjust to center */
+    padding: 6px 12px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    opacity: 0;
+    /* Initially hidden */
+    pointer-events: none;
+    /* Prevent tooltip from affecting interactions */
+    transition: opacity 0.2s ease-in-out;
+}
+
+.tooltip:hover::before {
+    opacity: 1;
+    /* Show the tooltip on hover */
+}
+
+
+/* main starts here */
+
+.container {
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container h1 {
+    border: 2px solid var(--text-primary);
+    border-radius: 1rem;
+    padding: 1rem;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.container h1 span {
+    color: var(--text-heading);
+}
+
+.container button {
+    cursor: pointer;
+    padding: 0.6rem;
+    font-size: 1.2rem;
+    border: 2px solid var(--bg-primary);
+    border-radius: 0.6rem;
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container button:hover {
+    background-color: rgb(161, 161, 161);
+}
+
+.container button:active {
+    background-color: rgb(134, 134, 134);
+}

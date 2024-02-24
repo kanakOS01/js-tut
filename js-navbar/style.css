@@ -1,0 +1,121 @@
+:root {
+    --bg-secondary: rgb(32, 32, 32);
+    --bg-primary: rgb(53, 52, 52);
+    --text-primary: rgb(190, 190, 190);
+    --text-hover-primary: rgb(255, 255, 255);
+    --text-active-primary: rgb(212, 255, 253);
+    --text-heading: rgb(103, 204, 230);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-primary);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+nav {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    box-shadow: 0px 7px 26px var(--bg-secondary);
+    padding: 1rem;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .nav-heading {
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    text-shadow: 0 0 0.3rem white;
+    font-size: 1.5rem;
+}
+
+.navbar span {
+    color: var(--text-heading);
+}
+
+.nav-links a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+    margin: 0 0.3rem;
+    font-size: 1.1rem;
+}
+
+.nav-links a:hover {
+    color: var(--text-hover-primary);
+    text-shadow: 0 0 0.3rem var(--text-heading);
+}
+
+.hamburger-menu {
+    display: none;
+}
+
+@media screen and (max-width: 850px) {
+
+    .navbar {
+        /* height: 12rem; */
+        height: 2rem;
+        /* change height to 12rem when we toggle the menu button */
+    }
+
+    .nav-logos {
+        display: none;
+    }
+
+    .nav-heading {
+        position: absolute;
+        left: 1rem;
+        top: 1rem;
+    }
+
+    .hamburger-menu {
+        display: block;
+        background-color: transparent;
+        border: none;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        cursor: pointer;
+    }
+
+    .hamburger-menu span {
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .hamburger-menu span:hover {
+        color: var(--text-primary);
+        transform: rotate(90deg);
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 4rem;
+        padding-left: -3rem;
+        height: 0px;
+        overflow: hidden;
+        /* this overflow is so that when we change height to 0 the options are not visible */
+    }
+
+    .nav-links a {
+        padding: 0.5rem 0;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .show-area {
+        height: 12rem;
+    }
+
+    .show-links {
+        overflow: visible;
+    }
+}

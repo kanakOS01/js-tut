@@ -1,0 +1,169 @@
+:root {
+    --bg-secondary: rgb(32, 32, 32);
+    --bg-primary: rgb(53, 52, 52);
+    --text-primary: rgb(190, 190, 190);
+    --text-hover-primary: rgb(255, 255, 255);
+    --text-active-primary: rgb(212, 255, 253);
+    --text-heading: rgb(109, 175, 166);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-primary);
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+}
+
+.container .title h1 {
+    color: var(--text-primary);
+    letter-spacing: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.underline {
+    height: 0.25rem;
+    width: 5rem;
+    background: var(--text-heading);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3rem;
+}
+
+.review-card {
+    background-color: var(--bg-secondary);
+    /* height: 200px; */
+    transition: box-shadow 0.7s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 3rem;
+    box-shadow: 0 0 1.3rem var(--bg-secondary);
+    color: var(--text-primary);
+    text-align: center;
+    border-radius: 1.2rem;
+}
+
+.review-card:hover{
+    box-shadow: 0 0 1.1rem var(--text-heading);
+    cursor: pointer;
+}
+
+.image-container {
+    position: relative;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 0 4px var(--text-heading);
+}
+
+.review-card .image-container img{
+    width: 10rem;
+    height: 10rem;
+    display: block;
+}
+
+.review-card #author {
+    letter-spacing: 0.4rem;   
+    margin-bottom: 0.5rem;
+}
+
+.review-card #job {
+    letter-spacing: 0.2rem;
+    color: var(--text-heading);
+    font-weight: bold;
+    margin-bottom: 0.7rem;
+}
+
+.review-card #info {
+    letter-spacing: 0.2rem;
+    line-height: 1.4rem;
+}
+
+.button-container {
+    margin: 1rem 0;
+}
+
+.button-container button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0 0.5rem;
+}
+
+.material-symbols-outlined {
+    color: var(--text-heading);
+    font-size: 3rem;
+    transition: color 0.3s ease-in-out;
+}
+
+.material-symbols-outlined:hover {
+    color: rgb(81, 81, 238);
+}
+
+.random-btn {
+    color: var(--text-heading);
+    border: 2px solid var(--text-heading);
+    background: transparent;
+    padding: 0.7rem;
+    border-radius: 0.8rem;
+    transition: background-color 0.6s ease, color 0.6s ease;
+    cursor: pointer;
+}
+
+.random-btn:hover {
+    background-color: var(--bg-primary);
+    color: var(--text-heading);
+}
+
+@media screen and (max-width: 900px) {
+    .container {
+        max-width: 600px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .container {
+        max-width: 400px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .container {
+        max-width: 350px;
+    }
+
+    .review-card {
+        padding: 1rem 1rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .container {
+        max-width: 325px;
+    }
+}
+
+

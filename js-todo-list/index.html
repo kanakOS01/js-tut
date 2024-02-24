@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TODO List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-bs-theme="dark">
+
+
+    <nav class="navbar navbar-expand-lg bg-primary px-5">
+        <div class="container-fluid custom-nav-container">
+            <a class="navbar-brand" href="#">TODO Tracker</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">About</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2 class="text-center my-5">TODO List</h2>
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Task Title</label>
+            <input placeholder="Enter title here" type="email" class="form-control" id="title">
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="description"
+                    style="height: 100px"></textarea>
+
+                <!-- we will add the description in localStorage -->
+                <label for="description" class="text-muted">Enter description here</label>
+            </div>
+        </div>
+
+        <button id="add" type="submit" class="btn btn-primary">Add to Your Tasks</button>
+        &nbsp;&nbsp;
+        <button id="clear" type="submit" class="btn btn-primary">Clear</button>
+
+    </div>
+
+    <div class="pt-4 tasks-container container">
+        <div class="container d-flex align-items-center justify-content-between pt-5 my-4">
+            <h2 class="">Your Tasks</h2>
+            <button id="delete-all" class="btn btn-danger">Delete All</button>
+        </div>
+        <table class="table table-hover table-bordered">
+            <thead class="table-top-border">
+                <tr>
+                    <th scope="col">S. No.</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <tr>
+                    <th class="align-middle task-no" scope="row"></th>
+                    <td class="align-middle task-title"></td>
+                    <td class="align-middle task-desc"></td>
+                    <td class="align-middle task-actions"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+    <script>
+        let itemsJsonArray = [];
+
+        function updateTable() {
+            let tableBody = document.getElementById('table-body');
+            let str = "";
+
+            itemsJsonArray.forEach((element, index) => {
+                str += `
+                        <tr>
+                            <th class="align-middle task-no" scope="row">${index + 1}</th>
+                            <td class="align-middle task-title">${element[0]}</td>
+                            <td class="align-middle task-desc">${element[1]}</td>
+                            <td class="align-middle task-actions">
+                                <button class="btn btn-danger btn-delete" onclick="deleteTask(${index + 1})">Delete</button>
+                            </td>
+                        </tr>`;
+            });
+
+            tableBody.innerHTML = str;
+        }
+
+        function update() {
+            console.log("Adding to list...");
+
+            const title = document.getElementById("title").value;
+            const description = document.getElementById("description").value;
+
+            if (title.trim() !== "") {
+                if (localStorage.getItem('itemsJson') !== null) {
+                    itemsJsonArray = JSON.parse(localStorage.getItem('itemsJson'));
+                }
+
+                itemsJsonArray.push([title, description]);
+                localStorage.setItem('itemsJson', JSON.stringify(itemsJsonArray));
+
+                updateTable();
+
+                // title = "";
+                // description = "";
+            }
+        }
+
+        // itemIndex stores the s.no. of the task
+        // itemIndex argument comes from line 103(onclick stmnt)
+        function deleteTask(itemIndex) {
+            console.log("Deleting Task ", itemIndex)
+
+            itemsJsonArray = JSON.parse(localStorage.getItem('itemsJson'));
+
+            // delete that item from array
+            itemsJsonArray.splice(itemIndex - 1, 1);
+
+            localStorage.setItem('itemsJson', JSON.stringify(itemsJsonArray));
+            updateTable();
+            // dont call update as it will at the same time add blank tasks(this will not work in this case but remember to take care)
+        }
+
+        function clearInput() {
+            console.log("Clearing fields...");
+
+            title = document.getElementById('title');
+            description = document.getElementById('description');
+            
+            title.value = "";
+            description.value = "";
+        }
+
+        function deleteAll() {
+
+            const confirmation = window.confirm("All your tasks will be deleted\nDo you want to continue?");
+
+            if (confirmation) {
+                console.log("Deleting All Tasks...")
+                itemsJsonArray = [];
+                localStorage.setItem('itemsJson', JSON.stringify(itemsJsonArray));
+    
+                updateTable();
+            }
+        }
+
+        // Call the update function when the page loads
+        window.addEventListener('load', function () {
+            if (localStorage.getItem('itemsJson') !== null) {
+                itemsJsonArray = JSON.parse(localStorage.getItem('itemsJson'));
+                updateTable();
+            }
+        });
+
+        let add = document.getElementById('add');
+        add.addEventListener("click", update);
+
+        let clearButton = document.getElementById('clear');
+        clearButton.addEventListener('click', clearInput);
+
+        let deleteAllButton = document.getElementById('delete-all');
+        deleteAllButton.addEventListener('click', deleteAll);
+    </script>
+
+
+</body>
+
+</html>
